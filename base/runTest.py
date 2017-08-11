@@ -6,7 +6,6 @@ import xlrd
 
 class runTest:
     def runAtpTest(self,testCaseFile):
-        print('\n'.join(sys.path))
         testCaseFile = os.path.join("./atpTestCase",testCaseFile)
         #print testCaseFile
         if not os.path.exists(testCaseFile):
