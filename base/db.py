@@ -5,7 +5,7 @@ import MySQLdb
 class db:
     def  getAtpConnection(self):
         cf = ConfigParser.ConfigParser()
-        cf.read("/Users/zhouxin/PycharmProjects/testinterface/com/java/conf/db_config.ini")
+        cf.read("./conf/db_config.ini")
         HOST = cf.get("dbconf_atp", "db_host")
         PORT = cf.get("dbconf_atp", "db_port")
         USER = cf.get("dbconf_atp", "db_user")
