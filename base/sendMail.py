@@ -19,7 +19,7 @@ class sendMail:
 
         message.attach(MIMEText('交易系统库存测试结果...', 'plain', 'utf-8'))
 
-        att1 = MIMEText(open('/Users/zhouxin/PycharmProjects/testinterface/atpTestCase/atpTestResult_' + resultTime + '.xls', 'rb').read(), 'base64', 'utf-8')
+        att1 = MIMEText(open('./atpTestCase/atpTestResult_' + resultTime + '.xls', 'rb').read(), 'base64', 'utf-8')
         att1["Content-Type"] = 'application/octet-stream'
         att1["Content-Disposition"] = 'attachment; filename="atpTestResult_' + resultTime + '.xls"'
         message.attach(att1)
