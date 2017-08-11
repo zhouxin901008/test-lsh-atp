@@ -121,7 +121,7 @@ class atp(unittest.TestCase):
         a = amount/float(i)
         ws.write(i,15,"%.2f"%a)
         print "case通过率为%.2f"%a
-        wb.save('/Users/zhouxin/PycharmProjects/testinterface/atpTestCase/atpTestResult_' + resultTime + '.xls')
+        wb.save('./atpTestCase/atpTestResult_' + resultTime + '.xls')
         sd = sendMail()
         sd.mail(resultTime)
 
