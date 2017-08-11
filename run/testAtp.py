@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys,os
+sys.path.append('/home/work/test-env/jenkins/workspace/test-lsh-atp')
 import unittest
 import requests
 import json
