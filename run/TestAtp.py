@@ -18,7 +18,7 @@ from base.SendMail import SendMail
 #reload(sys)
 #sys.setdefaultencoding('utf-8')
 
-class atp(unittest.TestCase):
+class TestAtp(unittest.TestCase):
     def setUp(self):
         pass
 

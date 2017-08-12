@@ -17,8 +17,8 @@
       <file leaf-file-name="TestAtp.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run/TestAtp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1665">
-              <caret line="116" column="31" lean-forward="true" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
+            <state relative-caret-position="131">
+              <caret line="25" column="12" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -225,8 +225,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration default="false" name="Unittests for run.TestAtp.atp.testAtp" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests for run.TestAtp.TestAtp">
+    <configuration default="false" name="Unittests for run.TestAtp.TestAtp" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -237,52 +237,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="test-lsh-atp" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;run.TestAtp.atp.testAtp&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests in TestAtp.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="test-lsh-atp" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/run/TestAtp.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests for run.TestAtp.atp" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="test-lsh-atp" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;run.TestAtp.atp&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests for base.testA.testA" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="test-lsh-atp" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;base.testA.testA&quot;" />
+      <option name="_new_target" value="&quot;run.TestAtp.TestAtp&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
@@ -350,18 +305,12 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for run.TestAtp.atp.testAtp" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in TestAtp.py" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for run.TestAtp.atp" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for base.testA.testA" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for run.TestAtp.TestAtp" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for run.TestAtp.atp.testAtp" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in TestAtp.py" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for base.testA.testA" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for run.TestAtp.atp" />
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for run.TestAtp.TestAtp" />
       </list>
     </recent_temporary>
   </component>
@@ -379,17 +328,11 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_run_TestAtp_atp_testAtp - 2017.08.12 at 21h 39m 34s.xml">
-      <configuration name="Unittests for run.TestAtp.atp.testAtp" configurationId="tests" />
+    <history-entry file="Unittests_for_run_TestAtp_TestAtp - 2017.08.12 at 22h 07m 51s.xml">
+      <configuration name="Unittests for run.TestAtp.TestAtp" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_run_TestAtp_atp_testAtp - 2017.08.12 at 21h 40m 57s.xml">
-      <configuration name="Unittests for run.TestAtp.atp.testAtp" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_run_TestAtp_atp_testAtp - 2017.08.12 at 21h 41m 09s.xml">
-      <configuration name="Unittests for run.TestAtp.atp.testAtp" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_run_TestAtp_atp_testAtp - 2017.08.12 at 21h 41m 26s.xml">
-      <configuration name="Unittests for run.TestAtp.atp.testAtp" configurationId="tests" />
+    <history-entry file="Unittests_for_run_TestAtp_TestAtp - 2017.08.12 at 22h 08m 29s.xml">
+      <configuration name="Unittests for run.TestAtp.TestAtp" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_for_run_TestAtp_atp_testAtp - 2017.08.12 at 21h 41m 42s.xml">
       <configuration name="Unittests for run.TestAtp.atp.testAtp" configurationId="tests" />
@@ -409,10 +352,15 @@
     <history-entry file="Unittests_for_run_TestAtp_atp_testAtp - 2017.08.12 at 21h 46m 41s.xml">
       <configuration name="Unittests for run.TestAtp.atp.testAtp" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_for_run_TestAtp_atp_testAtp - 2017.08.12 at 22h 06m 33s.xml">
+      <configuration name="Unittests for run.TestAtp.atp.testAtp" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_run_TestAtp_atp_testAtp - 2017.08.12 at 22h 07m 15s.xml">
+      <configuration name="Unittests for run.TestAtp.atp.testAtp" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="729" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2536349" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -420,9 +368,9 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -506,8 +454,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/run/TestAtp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1665">
-          <caret line="116" column="31" lean-forward="true" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
+        <state relative-caret-position="131">
+          <caret line="25" column="12" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
           <folding />
         </state>
       </provider>
