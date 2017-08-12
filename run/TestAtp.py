@@ -28,7 +28,7 @@ class atp(unittest.TestCase):
     def testAtp(self):
         # 操作excel
         testCase = TestCase()
-        excel = testCase.getAtpTest("atpcase.xls")
+        excel = testCase.getAtpTestCase("atpcase.xls")
         sheet = excel.sheets()[0]
         nrows = sheet.nrows
         wb = copy(excel)
