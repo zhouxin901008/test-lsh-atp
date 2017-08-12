@@ -12,7 +12,7 @@ sys.path.append('/home/work/test-env/jenkins/workspace/test-lsh-atp')
 from xlutils.copy import copy
 from base.Basic import Basic
 from base.DB import DB
-from base.RunTest import RunTest
+from base.TestCase import TestCase
 from base.SendMail import SendMail
 
 #reload(sys)
@@ -27,7 +27,7 @@ class atp(unittest.TestCase):
 
     def testAtp(self):
         # 操作excel
-        testCase = RunTest()
+        testCase = TestCase()
         excel = testCase.getAtpTest("atpcase.xls")
         sheet = excel.sheets()[0]
         nrows = sheet.nrows

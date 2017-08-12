@@ -4,8 +4,8 @@ import logging
 import xlrd
 
 
-class RunTest:
-    def getAtpTest(self,testCaseFile):
+class TestCase:
+    def getAtpTestCase(self,testCaseFile):
         testCaseFile = os.path.join("./atpTestCase",testCaseFile)
         #print testCaseFile
         if not os.path.exists(testCaseFile):
