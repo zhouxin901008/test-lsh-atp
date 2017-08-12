@@ -2,20 +2,21 @@
 # -*- coding: utf-8 -*-
 
 import sys,os
-sys.path.append('/home/work/test-env/jenkins/workspace/test-lsh-atp')
 import unittest
 import requests
 import json
 import random
 import time
+
+sys.path.append('/home/work/test-env/jenkins/workspace/test-lsh-atp')
 from xlutils.copy import copy
+from base.Basic import Basic
+from base.DB import DB
+from base.RunTest import RunTest
+from base.SendMail import SendMail
 
-from base.db import db
-from base.runTest import runTest
-from base.sendMail import sendMail
-
-reload(sys)
-sys.setdefaultencoding('utf-8')
+#reload(sys)
+#sys.setdefaultencoding('utf-8')
 
 class atp(unittest.TestCase):
     def setUp(self):
@@ -26,9 +27,8 @@ class atp(unittest.TestCase):
 
     def testAtp(self):
         # 操作excel
-        testCase = runTest()
-        excel = testCase.runAtpTest("atpcase.xls")
-        #excel = xlrd.open_workbook('/Users/zhouxin/PycharmProjects/testinterface/atpTestCase/atpcase.xls')
+        testCase = RunTest()
+        excel = testCase.getAtpTest("atpcase.xls")
         sheet = excel.sheets()[0]
         nrows = sheet.nrows
         wb = copy(excel)
@@ -36,9 +36,10 @@ class atp(unittest.TestCase):
         amount = 0
 
         for i in range(1,nrows):
-            host = 'http://atp.lsh123.com'
+            basic = Basic()
+            host = basic.getAtpHost()
+            headers = eval(basic.getAtpHeaders())
             url = sheet.cell(i,4).value
-            headers = {'Content-Type': 'application/json','api-version':'v1.0','random':'12345','platform':'web'}
             data = sheet.cell(i,5).value
             if "sequence" in data :
                 data = json.loads(data)
@@ -58,13 +59,9 @@ class atp(unittest.TestCase):
                     #print data['sequence']
                 elif sheet.cell(i, 2).value.encode("utf-8") == '含有hold_id的还原':
                     # 链接数据库
-                    atp = db()
+                    atp = DB()
                     sql = "select SEQUENCE_ID as sequence ,HOLD_NO as hold_id from `lsh-atp1`.`SKU_HOLD` where hold_end_time = 1500000000 and status = '2' and ZONE_CODE = 1000 ORDER BY id desc limit 1;"
                     data = atp.atpQuery(sql)
-                    #atp = MySQLdb.connect(host='192.168.60.48', port=5201, user='root', passwd='root123', db='lsh-atp1',charset="utf8")
-                    #cursor = atp.cursor(cursorclass=MySQLdb.cursors.DictCursor)
-                    #cursor.execute(sql)
-                    #data = cursor.fetchall()
                     for row in data:
                         #print row
                         data = row
@@ -73,9 +70,7 @@ class atp(unittest.TestCase):
                     #print json.dumps(data)
                 elif sheet.cell(i, 2).value.encode("utf-8") == 'hold_id为空':
                     # 链接数据库
-                    #atp = MySQLdb.connect(host='192.168.60.48', port=5201, user='root', passwd='root123', db='lsh-atp1',charset="utf8")
-                    #cursor = atp.cursor(cursorclass=MySQLdb.cursors.DictCursor)
-                    atp = db()
+                    atp = DB()
                     sql = "select SEQUENCE_ID as sequence from `lsh-atp1`.`SKU_HOLD` where hold_end_time = 1500000000 and status = '2' and ZONE_CODE = 1000 ORDER BY id desc limit 1;"
                     data = atp.atpQuery(sql)
                     #cursor.execute(sql)
@@ -95,12 +90,12 @@ class atp(unittest.TestCase):
                 #print data['item_id']
                 ws.write(i, 5, json.dumps(data))
                 try:
-                    result = requests.post(host + url, headers=headers, data=json.dumps(data))
+                    result = requests.post(host + url, headers = headers, data = json.dumps(data))
                 except Exception, e:
                     print Exception, ":", e
             else:
                 try:
-                    result = requests.post(host + url, headers=headers, data=data)
+                    result = requests.post(host + url, headers = headers, data = data)
                 #r = json.dumps(result.text)
                 #print r
                 except Exception, e:
@@ -122,7 +117,7 @@ class atp(unittest.TestCase):
         ws.write(i,15,"%.2f"%a)
         print "case通过率为%.2f"%a
         wb.save('./atpTestCase/atpTestResult_' + resultTime + '.xls')
-        sd = sendMail()
+        sd = SendMail()
         sd.mail(resultTime)
 
 
@@ -131,9 +126,9 @@ if __name__ ==  '__main__':
 
     """"
     suite = unittest.TestSuite()
-    suite.addTest(atp1("testAtp"))
+    suite.addTest(atp1("TestAtp"))
 
-    filename = "/Users/zhouxin/PycharmProjects/testinterface/atpTestReport.html"
+    filename = "./atpTestReport.html"
     fp = file(filename, 'wb')
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title="testing result", description="trying")
     runner.run(suite)

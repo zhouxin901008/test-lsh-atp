@@ -4,7 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.header import Header
 
-class sendMail:
+class SendMail:
     def mail(self,resultTime):
         sender = 'zxin901008@163.com'
         receivers = ['zxin901008@163.com']

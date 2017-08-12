@@ -2,10 +2,10 @@ import ConfigParser
 
 import MySQLdb
 
-class db:
+class DB:
     def  getAtpConnection(self):
         cf = ConfigParser.ConfigParser()
-        cf.read("./conf/db_config.ini")
+        cf.read("./conf/config.ini")
         HOST = cf.get("dbconf_atp", "db_host")
         PORT = cf.get("dbconf_atp", "db_port")
         USER = cf.get("dbconf_atp", "db_user")
@@ -15,20 +15,20 @@ class db:
         return dbConnect
 
     def atpQuery(self,sql):
-        mysql = db()
+        mysql = DB()
         mysqldb = mysql.getAtpConnection()
         cursor = mysqldb.cursor(cursorclass=MySQLdb.cursors.DictCursor)
         try:
             cursor.execute(sql)
-            s = cursor.fetchall()
+            data = cursor.fetchall()
             #print s
         except:
             print "Error: unable to fecth data"
         mysqldb.close()
-        return s
+        return data
 
     def atpUpdate(self, sql):
-        mysql = db()
+        mysql = DB()
         mysqldb = mysql.getAtpConnection()
         cursor = mysqldb.cursor(cursorclass=MySQLdb.cursors.DictCursor)
         try:
