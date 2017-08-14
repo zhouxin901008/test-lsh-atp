@@ -4,7 +4,6 @@
 import sys,os
 import unittest
 
-import HTMLTestRunner
 import requests
 import json
 import random
