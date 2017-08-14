@@ -3,12 +3,15 @@
 
 import sys,os
 import unittest
+
+import HTMLTestRunner
 import requests
 import json
 import random
 import time
 
-sys.path.append('/home/work/test-env/jenkins/workspace/test-lsh-atp')
+
+sys.path.append(os.getcwd())
 from xlutils.copy import copy
 from base.Basic import Basic
 from base.DB import DB
@@ -20,7 +23,9 @@ from base.SendMail import SendMail
 
 class TestAtp(unittest.TestCase):
     def setUp(self):
-        pass
+        basic = Basic()
+        self.host = basic.getAtpHost()
+        self.headers = eval(basic.getAtpHeaders())
 
     def tearDown(self):
         pass
@@ -36,28 +41,25 @@ class TestAtp(unittest.TestCase):
         amount = 0
 
         for i in range(1,nrows):
-            basic = Basic()
-            host = basic.getAtpHost()
-            headers = eval(basic.getAtpHeaders())
-            url = sheet.cell(i,4).value
-            data = sheet.cell(i,5).value
+            url = sheet.cell(i,3).value
+            data = sheet.cell(i,4).value
             if "sequence" in data :
                 data = json.loads(data)
                 data['sequence'] = random.randint(100000000, 999999999)
-                if sheet.cell(i,2).value.encode("utf-8")  == 'sequence已存在':
+                if sheet.cell(i,1).value.encode("utf-8")  == 'sequence已存在':
                     data['sequence'] = '450639911'
-                elif sheet.cell(i,2).value.encode("utf-8")  == 'sequence为空':
+                elif sheet.cell(i,1).value.encode("utf-8")  == 'sequence为空':
                     data['sequence'] = ""
-                elif sheet.cell(i,2).value.encode("utf-8")  == '扣减DC10':
-                    sequence = data['sequence']
-                    #print sequence
-                elif sheet.cell(i,2).value.encode("utf-8")  == '正确的还原':
+                elif sheet.cell(i,1).value.encode("utf-8")  == '正确的还原':
+                    atp = DB()
+                    sql = "select SEQUENCE_ID as sequence from SKU_HOLD where hold_end_time = 1500000000 and status = '2' and ZONE_CODE = 1000 ORDER BY rand() limit 1;"
+                    sequence = atp.atpQuery(sql)
+                    for row in sequence :
+                        sequence = row['sequence']
                     data['sequence'] = sequence
-                    #print data['sequence']
-                elif sheet.cell(i,2).value.encode("utf-8")  == '已经还原过':
-                    data['sequence'] = sequence
-                    #print data['sequence']
-                elif sheet.cell(i, 2).value.encode("utf-8") == '含有hold_id的还原':
+                elif sheet.cell(i,1).value.encode("utf-8") == '已经还原过':
+                    data['sequence'] = 103066570
+                elif sheet.cell(i,1).value.encode("utf-8") == '含有hold_id的还原':
                     # 链接数据库
                     atp = DB()
                     sql = "select SEQUENCE_ID as sequence ,HOLD_NO as hold_id from `lsh-atp1`.`SKU_HOLD` where hold_end_time = 1500000000 and status = '2' and ZONE_CODE = 1000 ORDER BY id desc limit 1;"
@@ -68,7 +70,7 @@ class TestAtp(unittest.TestCase):
                     data['channel'] = 1
                     #cursor.close()
                     #print json.dumps(data)
-                elif sheet.cell(i, 2).value.encode("utf-8") == 'hold_id为空':
+                elif sheet.cell(i,1).value.encode("utf-8") == 'hold_id为空':
                     # 链接数据库
                     atp = DB()
                     sql = "select SEQUENCE_ID as sequence from `lsh-atp1`.`SKU_HOLD` where hold_end_time = 1500000000 and status = '2' and ZONE_CODE = 1000 ORDER BY id desc limit 1;"
@@ -82,56 +84,71 @@ class TestAtp(unittest.TestCase):
                     data['channel'] = 1
                     #cursor.close()
                     #print json.dumps(data)
-                ws.write(i,5,json.dumps(data))
-                result = requests.post(host + url,headers = headers,data = json.dumps(data))
-            elif sheet.cell(i, 2).value.encode("utf-8") == '创建出货规则':
+                elif sheet.cell(i,1).value.encode("utf-8") == 'hold_id和sequence不对应':
+                    atp = DB()
+                    sql1 = "select SEQUENCE_ID as sequence from SKU_HOLD where hold_end_time = 1500000000 and status = '2' and ZONE_CODE = 1000 ORDER BY rand() limit 1;"
+                    sql2 = "select HOLD_NO as hold_id from SKU_HOLD where hold_end_time = 1500000000 and status = '2' and ZONE_CODE = 1000 ORDER BY rand() limit 1;"
+                    data1 = atp.atpQuery(sql1)
+                    for row in data1 :
+                        sequence = row['sequence']
+                    data2 = atp.atpQuery(sql2)
+                    for row in data2:
+                        hold_id = row['hold_id']
+                    data['sequence'] = sequence
+                    data['hold_id'] = hold_id
+                    #data['channel'] = 1
+                ws.write(i,4,json.dumps(data))
+                result = requests.post(self.host + url, headers = self.headers, data = json.dumps(data))
+            elif sheet.cell(i,1).value.encode("utf-8") == '创建出货规则':
                 data = json.loads(data)
                 data['item_id'] = random.randint(100000, 999999)
                 #print data['item_id']
-                ws.write(i, 5, json.dumps(data))
+                ws.write(i, 4, json.dumps(data))
                 try:
-                    result = requests.post(host + url, headers = headers, data = json.dumps(data))
+                    result = requests.post(self.host + url, headers = self.headers, data = json.dumps(data))
                 except Exception, e:
                     print Exception, ":", e
             else:
                 try:
-                    result = requests.post(host + url, headers = headers, data = data)
+                    result = requests.post(self.host + url, headers = self.headers, data = data)
                 #r = json.dumps(result.text)
                 #print r
                 except Exception, e:
                     print Exception, ":", e
             responseTime = (result.elapsed.microseconds) / 1000
-            ws.write(i,13,responseTime)
-            status = sheet.cell(i,11).value
+            ws.write(i,7,responseTime)
+            status = sheet.cell(i,5).value
             if result.json()['status'] == status :
                 print "第%d条用例pass"%i
-                ws.write(i,12,'pass')
+                ws.write(i,6,'pass')
                 amount+=1
             else:
                 print "第%d条用例failure" %i
-                ws.write(i, 12, result.json()['status'])
-                ws.write(i,10,result.text)
+                ws.write(i,6,result.text)
             resultTime = time.strftime('%Y-%m-%d_%H:%M:%S')
 
         a = amount/float(i)
-        ws.write(i,15,"%.2f"%a)
+        ws.write(i,9,"%.2f"%a)
         print "case通过率为%.2f"%a
-        wb.save('./atpTestCase/atpTestResult_' + resultTime + '.xls')
-        sd = SendMail()
-        sd.mail(resultTime)
+        wb.save('./atpTestResults/atpTestResult_' + resultTime + '.xls')
+        #sd = SendMail()
+        #sd.mail(resultTime)
 
-
-if __name__ ==  '__main__':
-    unittest.main()
-
-    """"
+if __name__ ==  "__main__":
+    #unittest.main()
     suite = unittest.TestSuite()
-    suite.addTest(atp1("TestAtp"))
+    suite.addTest(TestAtp("testAtp"))
 
-    filename = "./atpTestReport.html"
+    # 执行测试
+    runner = unittest.TextTestRunner()
+    runner.run(suite)
+
+    '''
+    endTime = time.strftime('%Y-%m-%d_%H:%M:%S')
+    filename = "./atpTestResults/atpTestReport_" + endTime + ".html"
     fp = file(filename, 'wb')
-    runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title="testing result", description="trying")
+    runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title="atp test result", description="atp")
     runner.run(suite)
     fp.close()
     os.system(filename)
-    """
+    '''

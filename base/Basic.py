@@ -1,4 +1,5 @@
 import ConfigParser
+import os
 
 cf = ConfigParser.ConfigParser()
 cf.read("./conf/config.ini")
