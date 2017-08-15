@@ -9,7 +9,7 @@ import random
 import time
 
 
-sys.path.append(os.getcwd())
+sys.path.append(os.path.dirname(os.getcwd()))
 from xlutils.copy import copy
 from base.Basic import Basic
 from base.DB import DB
