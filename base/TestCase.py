@@ -6,7 +6,7 @@ import xlrd
 
 class TestCase:
     def getAtpTestCase(self,testCaseFile):
-        testCaseFile = os.path.join("./atpTestCase",testCaseFile)
+        testCaseFile = os.path.join(os.path.dirname(os.getcwd()) + "/atpTestCase",testCaseFile)
         #print testCaseFile
         if not os.path.exists(testCaseFile):
             logging.error("测试用例文件不存在!")

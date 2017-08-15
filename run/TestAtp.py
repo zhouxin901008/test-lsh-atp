@@ -3,7 +3,6 @@
 
 import sys,os
 import unittest
-
 import requests
 import json
 import random
@@ -61,7 +60,7 @@ class TestAtp(unittest.TestCase):
                 elif sheet.cell(i,1).value.encode("utf-8") == '含有hold_id的还原':
                     # 链接数据库
                     atp = DB()
-                    sql = "select SEQUENCE_ID as sequence ,HOLD_NO as hold_id from `lsh-atp1`.`SKU_HOLD` where hold_end_time = 1500000000 and status = '2' and ZONE_CODE = 1000 ORDER BY id desc limit 1;"
+                    sql = "select SEQUENCE_ID as sequence ,HOLD_NO as hold_id from SKU_HOLD where hold_end_time = 1500000000 and status = '2' and ZONE_CODE = 1000 ORDER BY id desc limit 1;"
                     data = atp.atpQuery(sql)
                     for row in data:
                         #print row
@@ -72,7 +71,7 @@ class TestAtp(unittest.TestCase):
                 elif sheet.cell(i,1).value.encode("utf-8") == 'hold_id为空':
                     # 链接数据库
                     atp = DB()
-                    sql = "select SEQUENCE_ID as sequence from `lsh-atp1`.`SKU_HOLD` where hold_end_time = 1500000000 and status = '2' and ZONE_CODE = 1000 ORDER BY id desc limit 1;"
+                    sql = "select SEQUENCE_ID as sequence from SKU_HOLD where hold_end_time = 1500000000 and status = '2' and ZONE_CODE = 1000 ORDER BY id desc limit 1;"
                     data = atp.atpQuery(sql)
                     #cursor.execute(sql)
                     #data = cursor.fetchall()
@@ -129,7 +128,7 @@ class TestAtp(unittest.TestCase):
         a = amount/float(i)
         ws.write(i,9,"%.2f"%a)
         print "case通过率为%.2f"%a
-        wb.save('./atpTestResults/atpTestResult_' + resultTime + '.xls')
+        wb.save(os.path.dirname(os.getcwd()) + '/atpTestResults/atpTestResult_' + resultTime + '.xls')
         #sd = SendMail()
         #sd.mail(resultTime)
 
@@ -144,7 +143,7 @@ if __name__ ==  "__main__":
 
     '''
     endTime = time.strftime('%Y-%m-%d_%H:%M:%S')
-    filename = "./atpTestResults/atpTestReport_" + endTime + ".html"
+    filename = os.path.dirname(os.getcwd()) + "/atpTestResults/atpTestReport_" + endTime + ".html"
     fp = file(filename, 'wb')
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title="atp test result", description="atp")
     runner.run(suite)

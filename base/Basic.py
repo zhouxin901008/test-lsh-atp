@@ -2,7 +2,7 @@ import ConfigParser
 import os
 
 cf = ConfigParser.ConfigParser()
-cf.read("./conf/config.ini")
+cf.read(os.path.dirname(os.getcwd()) + "/conf/config.ini")
 
 class Basic:
     def getAtpHost(self):
